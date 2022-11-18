@@ -1,7 +1,15 @@
 import { useState, useEffect } from 'react'
 
+interface IMovies {
+  items: string[]
+  results: string[]
+  title?: string
+  poster_path?: string
+  name: string
+}
+
 function App() {
-  const [movies, setMovies] = useState()
+  const [movies, setMovies] = useState<IMovies>()
   const [cover, setCover] = useState()
   const [title, setTitle] = useState()
   const [description, setDescription] = useState()
