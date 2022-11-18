@@ -19,8 +19,6 @@ function App() {
     getMovies()
   }, [search])
 
-  console.log(import.meta.env.VITE_API_KEY) // 123
-
   async function getMovies() {
     if (!search) {
       const url = `https://api.themoviedb.org/3/list/4?api_key=${
@@ -41,7 +39,6 @@ function App() {
     const json = await response.json()
     setMovies(json)
   }
-  console.log(movies)
   return (
     <div className="App font-inter min-h-screen bg-black/90">
       {movies && (
