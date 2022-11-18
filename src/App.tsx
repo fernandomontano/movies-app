@@ -73,7 +73,7 @@ function App() {
               <div className="px-4 text-2xl font-bold text-white">
                 <div>{movies['name']}</div>
               </div>
-              <div className="grid grid-cols-3 md:grid-cols-4 md:gap-4 gap-2 px-4 mt-4">
+              <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 md:gap-4 gap-2 px-4 mt-4">
                 {movies.hasOwnProperty('items') &&
                   movies['items'].map((item) => {
                     return (
