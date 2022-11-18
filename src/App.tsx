@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, ChangeEvent } from 'react'
 
 interface IMovies {
   items: string[]
@@ -14,14 +14,21 @@ function App() {
   const [title, setTitle] = useState()
   const [description, setDescription] = useState()
   const [search, setSearch] = useState('')
-
   useEffect(() => {
     getMovies()
   }, [search])
 
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    let timeOut
+    timeOut && clearTimeout(timeOut)
+    timeOut = setTimeout(() => {
+      setSearch(e.target.value)
+    }, 1000)
+  }
+
   async function getMovies() {
     if (!search) {
-      const url = `https://api.themoviedb.org/3/list/4?api_key=${
+      const url = `https://api.themoviedb.org/3/list/3?api_key=${
         import.meta.env.VITE_API_KEY
       }`
       const response = await fetch(url)
@@ -60,8 +67,7 @@ function App() {
                 type="text"
                 className="rounded-md bg-transparent w-48 border absolute top-2 right-2 text-sm p-2 mx-10 mt-5 text-white font-bold"
                 placeholder="Search for movies"
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
+                onChange={(e) => handleChange(e)}
               />
               <div className="text-white absolute bottom-14 left-10 max-w-xl right-10 rounded text-xl font-bold">
                 <div className="bg-gray-900/70 rounded">
